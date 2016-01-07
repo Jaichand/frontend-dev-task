@@ -1,1 +1,38 @@
-<!DOCTYPE html><html><head><title></title><link rel="stylesheet" href="/static/css/home.css"><script type="text/javascript" src="/static/js/home.js"></script></head><body class="light-primary-color"><h1>Good Luck!</h1></body></html>
+<!DOCTYPE html>
+<html ng-app="webYogAssignment">
+  <head>
+    <title>FrontEndAssignment</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="../../static_content/css/home.css"/>
+    <style>
+      .inbox{
+          padding: 30px;
+ /*          width: 250;
+ height: 300; */
+          box-shadow:0 2px 10px 0 rgba(1,0,0,0.16),0 2px 5px 0 rgba(1,0,0,0.26);
+      }
+      .head{
+        margin: 0 50%;
+      }
+    </style>
+    <!-- <script type="text/javascript" src="/static/js/home.js"></script> -->
+  </head>
+  <body class="light-primary-color" ng-controller="webYogAPI as webCtrl">
+    <div><h1 class="head">Inbox</h1></div>
+    <div><i class="glyphicon glyphicon-search"></i><input type ="text"/></div>
+    <div class="inbox" ng-repeat = 'message in webCtrl.message'>      
+        <ul style="float:left clear:both">
+          <li ng-if="message.participants.length > 1">
+            <i style="float:right; margin-right:8%; margin-top:0%;" class="glyphicon glyphicon-star-empty"></i>  
+            <h3 style="display:inline" ng-repeat="name in message.participants">{{ name.name }} & </h3></li>
+          <li ng-if="message.participants.length === 1">
+          <i style="float:right; margin-right:8%; margin-top:0%;" class="glyphicon glyphicon-star-empty"></i>
+            <h3>{{ message.participants[0].name}}</h3></li>
+          <li style="list-style-type:none" >{{ message.subject }}</li>
+          <li style="list-style-type:none" >{{ message.preview}}</li>
+        </ul>
+    </div>
+  </body>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script type="text/javascript" src="../../static_content/js/home.js"></script>
+</html>
