@@ -1,0 +1,9 @@
+<div>
+  <h3><span ng-repeat="name in currentMessage.participants ">{{ name.name }}
+  <span ng-if="$index != currentMessage.participants.length-1 ">&</span>
+  </span></h3>
+  <p>{{ currentMessage.id }}</p>
+  <p>{{ currentMessage.subject }}</p>
+  <p> {{ currentMessage.body}}</p>
+  <a href="/#/dashboard/messages">back</a>
+</div>
