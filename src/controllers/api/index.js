@@ -57,4 +57,18 @@ module.exports = function (router) {
         delete messages[id];
         res.status(204).send({status: 204});
     });
+
+    /*router.patch('/:id', function (req, res, next) {
+        var id  = Number(req.params.id);
+        var msg = messages[id];
+        if (!msg) {
+            res.status(400).send({status: 400});
+            return;
+        }
+        console.log(req.params);
+        res.send(msg.isStarred);*/
+        /*msg.isStarred = req.params.isStarRed*/ /*? req.params.isStarRed : msg.isStarred)*//*;*/
+        /*msg.isRead  =  (req.params.isRead ? req.params.isRead : msg.isRead);  */
+       /* res.status(204).send({status: 204});
+    });*/
 };
