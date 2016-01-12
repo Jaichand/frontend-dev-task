@@ -4,8 +4,8 @@
 </div>
 <ul id="mesgList">
   <li class="inbox" ng-repeat='message in webCtrl.messages' 
-  ng-click="webCtrl.changeUrl(message.id,$event)" 
-  ng-swipe-left="webCtrl.showActions = true;" ng-swipe-right="webCtrl.showActions = false;" id="message.id">
+  ng-click="webCtrl.changeUrl(message.id,message.isRead)" 
+  ng-swipe-left="webCtrl.showActions = true;" ng-swipe-right="webCtrl.showActions = false;" id="message.id" ng-class="{'inbox isRead':!message.isRead, 'inbox isnotRead':message.isRead}">
     <a>
       <div>
         <div class="mesgContent" ng-click="$event.target.href" >

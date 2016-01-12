@@ -1,5 +1,5 @@
 .isRed{
-  color:red;
+  color:#F7DC29;
 }
 .back{
   float:left;
@@ -11,7 +11,15 @@
   width: 100%;
   padding: 30px 0px;
   box-shadow: 0 2px 9px 0 rgba(1,0,0,0.16),0 2px 5px 0 rgba(1,0,0,0.26);
-  background-color: #DDD;
+  background-color: #E4E2E2;
+}
+.isnotRead{
+  color: #222;
+  background: rgba(240,240,240,0.9);;
+}
+.isRead{
+  background: rgba(243,243,243,.25);
+  color:#222;
 }
 @media only screen and (max-width: 2048px) {  
   .inbox{

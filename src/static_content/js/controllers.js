@@ -23,7 +23,21 @@
         }
       );
     };
-    self.changeUrl = function(id,$event) {
+    self.changeUrl = function(id,isRead) {
+      if(isRead){
+        self.isRead = !isRead;
+      }
+      else{
+        self.isRead = isRead; 
+      }
+      MailBox.isRead(id,self.isRead)
+      .success(
+        function(){
+          var currentMessage = self.messages.find(function(mesg){return mesg.id === id});
+          currentMessage.isRead = isRead;
+
+        }
+      );
       window.location.href='/#/dashboard/message/'+id;
     };
   })
@@ -42,12 +56,8 @@
       var input = [];
       input.user = userId;
       $scope.deleteRequest = MailBox.deleteMsg(id,userId);
-      /*$http.delete('/api/'+ id,{params:{id:userId}})*/
       $scope.deleteRequest
       .success(function() {
-        /*$scope.messages = $scope.messages.filter(function(mesg){
-          return mesg.id !== id;
-        });*/
       window.location.href='/#/dashboard/message/';
       })
       .error(function(err) {
