@@ -2,17 +2,36 @@
   color:red;
 }
 .back{
-  float:right;
+  float:left;
   text-decoration: initial;
   font-size: 20px;
-  margin-right: 5%;
+  margin-left: 5%;
+}
+.header,.mesgheader{
+  width: 100%;
+  padding: 30px 0px;
+  box-shadow: 0 2px 9px 0 rgba(1,0,0,0.16),0 2px 5px 0 rgba(1,0,0,0.26);
+  background-color: #DDD;
 }
 @media only screen and (max-width: 2048px) {  
   .inbox{
     list-style-type:none; 
+    padding: 25px 0px;
+    box-shadow: 0 2px 9px 0 rgba(1,0,0,0.16),0 2px 5px 0 rgba(1,0,0,0.26);
+  }
+  .inTitle{ margin-left: 3%;
+    font-size: 20px;
+  }
+  .delButton{
+    float: right;
+    margin-right: 5%;
+    margin-top: 9px;
   }
   .glypIcon{
     float: right;
+  }
+  #trash{
+    display: none;
   }
   .headBoxlist{
     list-style-type:none; 
@@ -37,24 +56,42 @@
   }
   #mesgList{
     padding-left: 0;
+    cursor: pointer;
   }
-  .megDisplay{
-    list-style-type:none; 
-    text-overflow: ellipsis; 
-    width: 88%;
+  .participantsName{
+    font-size: 14px;
+    font-weight: bold;
+    float:left;
+    clear: both;
+    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    width: 10%;
+  }
+  .mesgSubject, .mesgPreview{
+    list-style-type:none; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    float: left;
+  }
+  .mesgSubject{
+    font-weight: bold;
+    width: 17%;
+    margin-left: 3%;
+  }
+  .mesgPreview{
+    margin-left: 3%;
+    width: 60%;
   }
   .myIcons {
     float: right;
-    margin-top: -65px;
+    margin-top: -5px;
+    margin-right: 20px;
     font-size: 20px;
   } 
   .myIcons>i{
     clear: both;
-  }
-  #trash{
-    display: block;
   }
   .inboxst{
     text-align:center;
@@ -64,82 +101,123 @@
 }
 
   @media only screen and (max-device-width: 600px) and (-webkit-min-device-pixel-ratio: 2) {
-      .inbox{
-          padding: 30px;
-          list-style: none;
-          font-size: 40px;
-          box-shadow:0 2px 10px 0 rgba(1,0,0,0.16),0 2px 5px 0 rgba(1,0,0,0.26);
-      }
-      .h3, h3 {
-        font-size: 60px;
-      }
-      .head{
-        margin-top: 1%;
-      }
-      #star{
-        margin-right:8%; 
-        margin-top:0%;
-      }
-      #trash{
-        display: block;
-      }
-      .megDisplay{
-        list-style-type:none; 
-        text-overflow: ellipsis; 
-        width: 88%;
-        white-space: nowrap;
-        overflow: hidden;
-      }
-      #preview{
-        color:#DDD;
-      }
-      .myIcons {
-        font-size: 70px;
-        float:right;
-        margin-top: -170px;
-      }
-      .particip{
-        display:inline;
-      }
-      .headBoxlist{
-        list-style-type:none;
-        display: inline; 
-      }
-      #searchBox{
-        float: right;
-      }
-      .inboxst{
-        text-align:center;
-        width: 150px; 
-        border:#DDD 2px solid;
-      }
-      .inancor{
-        font-size: 40px;
-      }
-      .back{
-       font-size: 40px; 
-      }
-
+    .inbox{
+      padding: 20px 0 200px 0;
+      list-style: none;
+      font-size: 40px;
+      box-shadow: 0 2px 10px 0 rgba(1,0,0,0.16),0 2px 5px 0 rgba(1,0,0,0.26);
+    }
+    .h3, h3 {
+      font-size: 60px;
+    }
+    .head{
+      margin-top: 1%;
+    }
+    #star{
+      margin-right:8%; 
+      margin-top:0%;
+    }
+    #trash{
+      display: block;
+    }
+    .mesgPreview {
+      margin-left: 0px;
+    }
+    .mesgSubject, .mesgPreview{
+      list-style-type:none; 
+      text-overflow: ellipsis; 
+      width: 88%;
+      white-space: nowrap;
+      overflow: hidden;
+      margin-left: 0;
+    }
+    #preview{
+      color:#DDD;
+    }
+    .myIcons {
+      font-size: 70px;
+      float:right;
+      margin-top: -140px;
+    }
+    .header,.mesgheader{
+      padding: 90px 0px;
+    }
+    .participantsName{
+      display:inline;
+      font-size: 60px;
+      text-overflow: initial;
+      white-space: inherit;
+      overflow: none;
+      width: 100%;
+    }
+    .headBoxlist{
+      list-style-type:none;
+      display: inline; 
+    }
+    #searchBox{
+      float: right;
+    }
+    .inboxst{
+      text-align:center;
+      width: 150px; 
+      border:#DDD 2px solid;
+    }
+    .inancor{
+      font-size: 40px;
+    }
+    .back{
+      font-size: 55px; 
+    }
+    .inTitle{
+      font-size: 55px;
+      margin-left: 5%;
+    }
+    .delButton{
+      font-size: 30px;
+      margin-top: 5px;
+    }
   }
   
 @media only screen and (max-device-width: 600px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
   .h3, h3{
     font-size: 30px;
   }
+  .delButton{
+    font-size: 35px;
+  }
+  .inTitle{
+    font-size: 55px;
+    margin-left: 5%;
+  }
+  .back{
+    font-size: 40px;
+    margin-top: -1%;
+  }
   .inbox{
     font-size: 20px;
+    padding: 20px 0 150px 0;
   }
   .myIcons{
     font-size: 40px;
-    margin-top: -110px;
+    margin-top: -80px;
   }
   a:focus,:hover{
     color: inherit;  
     text-decoration: none;
   }
   .inboxst{
-      text-align:center;
-      width: 150px; 
-      border:#DDD 2px solid;
-    }
+    text-align:center;
+    width: 150px; 
+    border:#DDD 2px solid;
+  }
+  .participantsName{
+    display:inline;
+    font-size: 50px;
+  }
+  .header{
+    padding: 20px 0px;
+  }
+  .mesgheader{
+    padding: 55px 0px;
+  }
  }

@@ -1,6 +1,13 @@
 <div>
-  <hr/>
-  <h3 style="margin:0 5% 0 5%;"><span ng-repeat="name in currentMessage.participants ">{{ name.name }}
+  <div class="mesgheader">
+    <div class="back" >
+      <a href="/#/dashboard/messages">back</a>
+    </div>
+    <div>
+      <i ng-show="!webCtrl.showActions" class="glyphicon glyphicon-trash delButton" ng-click="deletemsg(currentMessage.id, currentMessage.$$hashKey,$event)"></i>
+    </div>
+  </div>
+  <h3 style="margin:3% 5% 0 5%;"><span ng-repeat="name in currentMessage.participants ">{{ name.name }}
   <span ng-if="$index != currentMessage.participants.length-1 ">&</span>
   </span></h3>
   <hr/>
@@ -12,4 +19,3 @@
     <p> {{ currentMessage.body}}</p>
   </div>
 </div>
-<div class="back" ><a href="/#/dashboard/messages">back</a></div>

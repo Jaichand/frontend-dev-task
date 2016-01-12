@@ -1,19 +1,26 @@
 <div> 
+<div class="header">
+  <div class="inTitle">Inbox</div>
+</div>
 <ul id="mesgList">
-  <li class="inbox" ng-repeat='message in webCtrl.messages' ng-click="webCtrl.changeUrl(message.id,$event)" ng-swipe-left="webCtrl.showActions = true;" ng-swipe-right="webCtrl.showActions = false;" id="message.id">
+  <li class="inbox" ng-repeat='message in webCtrl.messages' 
+  ng-click="webCtrl.changeUrl(message.id,$event)" 
+  ng-swipe-left="webCtrl.showActions = true;" ng-swipe-right="webCtrl.showActions = false;" id="message.id">
     <a>
       <div>
         <div class="mesgContent" ng-click="$event.target.href" >
-          <h3 class="particip">
+          <div class="participantsName">
             <span ng-repeat="name in message.participants">{{ name }}
               <span ng-if="$index != message.participants.length-1 ">&</span> 
             </span> 
-          </h3>
-          <div class="megDisplay">{{ message.subject }} </div>
-          <div class="megDisplay" id="preview" >{{ message.preview }}</div>
+          </div>
+          <div class="mesgSubject">{{ message.subject }} </div>
+          <div class="mesgPreview" id="preview" >{{ message.preview }}</div>
         </div>
         <div class="myIcons">
-          <i id="star" ng-class="{'glyphicon glyphicon-star isRed': message.isStarred,'glyphicon glyphicon-star-empty':!message.isStarred}" ng-click="webCtrl.makeFaviorate(message.id,message.isStarred,$event)"></i> 
+          <i id="star" 
+            ng-class="{'glyphicon glyphicon-star isRed': message.isStarred,'glyphicon glyphicon-star-empty':!message.isStarred}" 
+            ng-click="webCtrl.makeFaviorate(message.id,message.isStarred,$event)"></i>
           <i id="trash" ng-show="!webCtrl.showActions" class="glyphicon glyphicon-trash" ng-click="webCtrl.deletemsg(message.id, message.$$hashKey,$event)"></i>
         </div>
 

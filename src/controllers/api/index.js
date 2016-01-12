@@ -7,7 +7,7 @@ module.exports = function (router) {
         _        = require('underscore'),
         moment   = require('moment');
 
-    var DUMMY_BODY = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas egestas leo sit amet justo vehicula tincidunt. Nullam a ipsum vitae ipsum feugiat sodales gravida quis nibh. Integer sed condimentum mauris. Maecenas venenatis purus quis nisl consequat, ac iaculis mi congue. Nunc ac turpis vel sapien maximus iaculis. Nunc in mollis lectus. Cras sem nisi, auctor eu malesuada consectetur, bibendum et tortor. Ut interdum nisl sed magna ullamcorper, ut pulvinar ligula luctus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.Etiam in tempor est. Praesent egestas rutrum ex sed ornare. Duis mi neque, vehicula et vehicula ut, convallis nec felis. Morbi mattis vitae massa sed rhoncus. Integer pulvinar tincidunt eros. Etiam ornare metus ac viverra placerat. Integer vel nunc et quam varius accumsan at in nibh. Fusce at luctus odio, vitae dictum mauris. Nulla facilisi. Cras non lorem porta, porta neque quis, ornare urna. Proin eleifend pretium neque id vestibulum. Ut condimentum mauris nec ipsum mollis molestie. Vivamus at erat lorem. In odio dui, molestie a accumsan sit amet, semper sed arcu. Sed ornare sed justo a ultrices. Fusce non consectetur lacus.'
+    var DUMMY_BODY = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas egestas leo sit amet justo vehicula tincidunt. Nullam a ipsum vitae ipsum feugiat sodales gravida quis nibh. Integer sed condimentum mauris. Maecenas venenatis purus quis nisl consequat, ac iaculis mi congue. Nunc ac turpis vel sapien maximus iaculis. Nunc in mollis lectus. Cras sem nisi, auctor eu malesuada consectetur, bibendum et tortor. Ut interdum nisl sed magna ullamcorper, ut pulvinar ligula luctus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.Etiam in tempor est. Praesent egestas rutrum ex sed ornare. Duis mi neque, vehicula et vehicula ut, convallis nec felis. Morbi mattis vitae massa sed rhoncus. Integer pulvinar tincidunt eros. Etiam ornare metus ac viverra placerat. Integer vel nunc et quam varius accumsan at in nibh. Fusce at luctus odio, vitae dictum mauris. Nulla facilisi. Cras non lorem porta, porta neque quis, ornare urna. Proin eleifend pretium neque id vestibulum. Ut condimentum mauris nec ipsum mollis molestie. Vivamus at erat lorem. In odio dui, molestie a accumsan sit amet, semper sed arcu. Sed ornare sed justo a ultrices. Fusce non consectetur lacus.';
 
     /**
      * This will give you a list of messages currently available
@@ -58,17 +58,34 @@ module.exports = function (router) {
         res.status(204).send({status: 204});
     });
 
-    /*router.patch('/:id', function (req, res, next) {
-        var id  = Number(req.params.id);
+    router.patch('/:id', function (req, res, next) {
+        var inputValidationError = checkInputParamsPatch(req);
+
+        if(inputValidationError !== "ok"){
+            res.status(400).send({message: inputValidationError});
+            return;
+        }        
+        var id  = req.params.id;
         var msg = messages[id];
         if (!msg) {
-            res.status(400).send({status: 400});
+            res.status(400).send({message: "No such message with id: " + id + " exists"});
             return;
         }
-        console.log(req.params);
-        res.send(msg.isStarred);*/
-        /*msg.isStarred = req.params.isStarRed*/ /*? req.params.isStarRed : msg.isStarred)*//*;*/
-        /*msg.isRead  =  (req.params.isRead ? req.params.isRead : msg.isRead);  */
-       /* res.status(204).send({status: 204});
-    });*/
+        if(typeof req.body.isStarred === "boolean")
+            msg.isStarred = req.body.isStarred ;
+        if(typeof req.body.isRead === "boolean")
+            msg.isRead  =  req.body.isRead;
+        res.send(msg);
+    });
+
+    function checkInputParamsPatch(req){
+        // check if params are passed, then the format must be as specified
+        if(isNaN(Number(req.params.id)))
+            return "id must be a number";
+        if(typeof req.body.isStarred !== "undefined" && typeof req.body.isStarred !== "boolean")
+            return "isStarred must be a boolean";
+        if(typeof req.body.isRead !== "undefined" && typeof req.body.isRead !== "boolean")
+            return "isRead must be a boolean";
+        return "ok";
+    }
 };
