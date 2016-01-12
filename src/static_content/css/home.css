@@ -15,10 +15,10 @@
 }
 .isnotRead{
   color: #222;
-  background: rgba(240,240,240,0.9);;
+  background: rgba(243,243,243,.25);
 }
 .isRead{
-  background: rgba(243,243,243,.25);
+  background: rgba(240,240,240,0.9);
   color:#222;
 }
 @media only screen and (max-width: 2048px) {  
